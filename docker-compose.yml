@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  twinty:
+    image: twinty:latest
+    network_mode: host
+    #links:
+    #  - torpool
+
+  torpool:
+    image: u1234x1234/torpool:1.0.2
+    command: [ '--Tors', '20', '--NewCircuitPeriod', '2', '--MaxCircuitDirtiness', '30' ]
+    #container_name: torpool
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+      - "9500:9500"
+    network_mode: host

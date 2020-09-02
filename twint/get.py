@@ -51,7 +51,7 @@ def get_connector(config):
     if config.Proxy_host:
         if config.Proxy_host.lower() == "tor":
             _connector = ProxyConnector(
-                socks_ver=ProxyType.SOCKS5,
+                proxy_type=ProxyType.SOCKS5,
                 host='127.0.0.1',
                 port=9050,
                 rdns=True)
@@ -186,6 +186,9 @@ async def User(url, config, conn, user_id = False):
         await Users(soup, config, conn)
     except Exception as e:
         logme.critical(__name__+':User:' + str(e))
+        if soup.find("div", "title").text == "Sorry, that page doesn't exist":
+            logme.warning(__name__ + ":User:" + "User deleted")
+            config.Store_object_users_list = ["UserDeleted"]
 
 def Limit(Limit, count):
     logme.debug(__name__+':Limit')
