@@ -143,7 +143,7 @@ class Twint:
                 tweet_dict['data-conversation-id'] = t_url.split('?')[0].split('/')[-1]
                 tweet_dict['username'] = tweet.find("div", {"class": "username"}).text.replace('\n', '').replace(' ',
                                                                                                                  '')
-                tweet_dict['tweet'] = tweet.find("div", {"class": "tweet-text"}).find("div", {"class": "dir-ltr"}).text
+                tweet_dict['tweet'] = tweet.find("div", {"class": "tweet-text"}).find("div", {"class": ["dir-ltr", "dir-rtl"]}).text
                 date_str = tweet.find("td", {"class": "timestamp"}).find("a").text
                 # test_dates = ["1m", "2h", "Jun 21, 2019", "Mar 12", "28 Jun 19"]
                 # date_str = test_dates[3]
@@ -202,7 +202,7 @@ class Twint:
                 tweet_dict['data-conversation-id'] = t_url.split('?')[0].split('/')[-1]
                 tweet_dict['username'] = tweet.find("div", {"class": "username"}).text.replace('\n', '').replace(' ',
                                                                                                                  '')
-                tweet_dict['tweet'] = tweet.find("div", {"class": "tweet-text"}).find("div", {"class": "dir-ltr"}).text
+                tweet_dict['tweet'] = tweet.find("div", {"class": "tweet-text"}).find("div", {"class": ["dir-ltr", "dir-rtl"]}).text
                 date_str = tweet.find("td", {"class": "timestamp"}).find("a").text
 
                 tweet_dict["avatar"] = tweet.find("td", {"class": "avatar"}).find("img")["src"]
