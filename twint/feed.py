@@ -61,7 +61,7 @@ def MobileSearch(response):
 
     logme.debug(__name__ + ':MobileSearch')
     soup = BeautifulSoup(response, "html.parser")
-    tweets = soup.find_all("table", "tweet")
+    tweets = soup.select("table.tweet:not(.tombstone-tweet)")
     max_id = str(soup.find_all("div", "w-button-more")[0]).split('''href="/search''')[1].split('>')[0]
 
     return tweets, max_id
